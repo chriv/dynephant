@@ -1,10 +1,12 @@
 REM Set locations of Dynephant directory, AutoIt3 binary, AutoIt3Wrapper script,
 REM the Windows 10 SDK signtool binary, and GnuWin32's sed utility binary below
+SET VERSION=0.9.1.9
 SET DYNDIR=C:\dynephant
 SET AI3="C:\Program Files (x86)\AutoIt3\AutoIt3.exe"
 SET AI3W="C:\Program Files (x86)\AutoIt3\SciTE\AutoIt3Wrapper\AutoIt3Wrapper.au3"
 SET SIGNTOOL=C:\SDK\Win\10\bin\x64\signtool.exe
 SET SED=C:\GnuWin32\bin\sed.exe
+SET MAKENSIS=C:\NSIS\makensis.exe
 REM Set locations of Dynephant directory, AutoIt3 binary, AutoIt3Wrapper script,
 REM the Windows 10 SDK signtool binary, and GnuWin32's sed utility binary above
 SET TSURL=http://timestamp.digicert.com
@@ -14,6 +16,8 @@ SET X86_CLI=dynephant-x86-cli.exe
 SET X86_GUI=dynephant-x86.exe
 SET X64_CLI=dynephant-cli.exe
 SET X64_GUI=dynephant.exe
+SET NSI=dynephant.nsi
+SET SETUP=dynephant-setup.exe
 @REM Change to Dynephant script/build directory
 IF NOT EXIST %DYNDIR% GOTO NODYNDIR
 CD /D %DYNDIR%
@@ -35,7 +39,22 @@ IF NOT EXIST %NEWINFILE% GOTO NOSIGNTOOL
 @REM Requires Windows 10 SDK signtool
 @REM (older versions of signtool don't support SHA256 and SHA1 is obsolete and not cryptographically valid anymore)
 %SIGNTOOL% sign /a /v /fd sha256 /tr %TSURL% /td sha256 %X86_CLI% %X64_CLI% %X86_GUI% %X64_GUI%
+:CONTINUENOSIGNTOOL
+IF NOT EXIST %MAKENSIS% GOTO NOMAKENSIS
+@REM Make setup
+IF EXIST %NSI% %MAKENSIS% %NSI%
+IF NOT EXIST %SETUP% GOTO END
+IF NOT EXIST %SIGNTOOL% GOTO END
+@REM Sign setup
+%SIGNTOOL% sign /a /v /fd sha256 /tr %TSURL% /td sha256 %SETUP%
+:CONTINUENOMAKENSIS
 GOTO END
+:NOSIGNTOOL
+ECHO Warning: %SIGNTOOL% missing! Skipping signing .exe files...
+GOTO CONTINUENOSIGNTOOL
+:NOMAKENSIS
+ECHO Warning: %MAKENSIS% missing! Skipping building installer...
+GOTO CONTINUENOMAKENSIS
 :NODYNDIR
 ECHO Error: %DYNDIR% missing! Required location of dynephant.au3!
 GOTO END
@@ -51,16 +70,15 @@ GOTO END
 :NONEWINFILE
 ECHO Error: %NEWINFILE% missing (failed to be created)! Nothing to do!
 GOTO END
-:NOSIGNTOOL
-ECHO Warning: %SIGNTOOL% missing! Skipping signing .exe files...
-GOTO END
 :END
 @REM Delete temp file and clean up build environment
 IF EXIST %NEWINFILE% DEL %NEWINFILE%
+@SET VERSION=
 @SET DYNDIR=
 @SET AI3=
 @SET AI3W=
 @SET SIGNTOOL=
+@SET MAKENSIS=
 @SET TSURL=
 @SET INFILE=
 @SET NEWINFILE=
@@ -68,3 +86,5 @@ IF EXIST %NEWINFILE% DEL %NEWINFILE%
 @SET X86_GUI=
 @SET X64_CLI=
 @SET X64_GUI=
+@SET NSI=
+@SET SETUP=
