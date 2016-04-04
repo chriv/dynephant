@@ -65,11 +65,11 @@ Once you have an account with dynv6.com, find your host name and
 authentication token.
 
 The command line arguments are:
--host=<hostname>               host name to update on DDNS service
--token=<authentication_token>  authentication token for host name to be updated
--4                             update DNS A record with IPv4 address
--6                             update DNS AAAA record with IPv6 address
--daemon=<seconds>              number of seconds to wait between updates
+* -host=\<hostname\>               host name to update on DDNS service
+* -token=\<authentication_token\>  authentication token for host name to be updated
+* -4                             update DNS A record with IPv4 address
+* -6                             update DNS AAAA record with IPv6 address
+* -daemon=\<seconds\>              number of seconds to wait between updates
 
 -host and -token are required. Either or both -4 or -6 are required.
 Not setting -daemon results in only one update (or attempt) occurring.
@@ -94,4 +94,13 @@ The update_foobar.dynv6.net.bat file contains the following example
 of using the CLI version with logging.
 ```bat
 C:\dynephant\dynephant-cli -6 -daemon=600 -host=foobar -token=randomtextforfoobarhere 1>C:\dynephant\dynephant-foobar.log 2>&1
+```
+Only use a CLI version if you need monitoring or logging, as it stays
+running in a Command Prompt window. It is possible to run the cli
+version in a hidden window using a third-part utility to launch it.
+Here's a one-line example using Sysinternal's psexec utility to run
+the batch file update_foobar.dynv6.net.bat as the Windows System
+user to effectively hide the Command Prompt window:
+```bat
+psexec /accepteula -s -d c:\dynephant\update_foobar.dynv6.net.bat
 ```
