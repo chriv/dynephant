@@ -90,10 +90,8 @@ following command:
 dynephant -host=foobar -token=randomtextforfoobarhere -6 -daemon=600
 ```
 
-See the update_foobar.dynv6.net.bat file for an example of using the
-CLI with logging. To run this batch file without keeping a Command
-Prompt open using the following command:
-
+The update_foobar.dynv6.net.bat file contains the following example
+of using the CLI version with logging.
 ```bat
-start update_foobar.dynv6.net.bat
+C:\dynephant\dynephant-cli -6 -daemon=600 -host=foobar -token=randomtextforfoobarhere 1>C:\dynephant\dynephant-foobar.log 2>&1
 ```
