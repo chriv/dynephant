@@ -90,7 +90,6 @@ following command:
 dynephant -host=foobar -token=randomtextforfoobarhere -6 -daemon=600
 ```
 
-<<<<<<< HEAD
 The update_foobar.dynv6.net.bat file contains the following example
 of using the CLI version with logging.
 ```bat
@@ -105,7 +104,3 @@ user to effectively hide the Command Prompt window:
 ```bat
 psexec /accepteula -s -d c:\dynephant\update_foobar.dynv6.net.bat
 ```
-=======
-See the update_foobar.dynv6.net.bat file for an example of using the
-CLI with logging.
->>>>>>> d762de6fc5e70d2bf5bb36f33d351137ffda1215
