@@ -48,6 +48,7 @@ without leaving a Command Prompt open.
 * Optional: Valid Code-signing certificate / key
 * Optional: Windows 10 SDK's signtool (https://developer.microsoft.com/en-us/windows/downloads/windows-10-sdk)
 * Optional: Working internet connection (needed to have signed timestamp on .exe files)
+* Optional: NSIS's makensis (http://nsis.sourceforge.net/Download) (needed to build setup)
 
 ##License
 
