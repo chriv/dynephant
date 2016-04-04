@@ -9,10 +9,10 @@
 #pragma compile(Comments, In-development Dynamic DNS Updater for Windows currently supporting dynv6.com service. Icon courtesy of http://www.how-to-draw-funny-cartoons.com)
 #pragma compile(CompanyName, Chuck Renner)
 #pragma compile(FileDescription, Dynephant Dynamic DNS Updater)
-#pragma compile(FileVersion, 0.9.1.9)
+#pragma compile(FileVersion, 0.9.1.10)
 #pragma compile(LegalCopyright, Copyright © 2016 Chuck Renner)
 #pragma compile(ProductName, Dynephant)
-#pragma compile(ProductVersion, 0.9.1.9)
+#pragma compile(ProductVersion, 0.9.1.10)
 
 ; Change to y when debugging in SciTE
 #AutoIt3Wrapper_Run_Debug_Mode=n
@@ -68,7 +68,7 @@
 #AutoIt3Wrapper_Run_After=build_all.bat
 
 $sTitle = "Dynephant"
-$sVersion = "0.9.1.9"
+$sVersion = "0.9.1.10"
 $sCopyright = "Copyright © 2016 Chuck Renner"
 $sMisc = "Icon courtesy of http://www.how-to-draw-funny-cartoons.com"
 ConsoleWriteError($sTitle & " Version " & $sVersion & @LF)
@@ -147,16 +147,26 @@ For $pCnt = 1 To $CmdLine[0]
 		EndSwitch
 	EndIf
 Next
+AutoItWinSetTitle($sTitle)
 If $host == "" Then
-	ConsoleWriteError("Exiting: no host specified: use -host=<hostname> parameter (do not include '.dynv6.net' in hostname)" & @LF)
+	$errMsg = "Exiting: no host specified: use -host=<hostname> parameter (do not include '.dynv6.net' in hostname)"
+	ConsoleWriteError($errMsg & @LF)
+	TrayTip($sTitle, $errMsg, 10, $TIP_ICONHAND)
+	Sleep(10000)
 	Exit (1)
 EndIf
 If $token == "" Then
-	ConsoleWriteError("Exiting: no token specified: use -token=<token> parameter" & @LF)
+	$errMsg = "Exiting: no token specified: use -token=<token> parameter"
+	ConsoleWriteError($errMsg & @LF)
+	TrayTip($sTitle, $errMsg, 10, $TIP_ICONHAND)
+	Sleep(10000)
 	Exit (1)
 EndIf
 If (Not $updateIpv4) And (Not $updateIpv6) Then
-	ConsoleWriteError("Exiting (nothing to do): no IP version specified: use -4 and/or -6 parameter(s)" & @LF)
+	$errMsg = "Exiting (nothing to do): no IP version specified: use -4 and/or -6 parameter(s)"
+	ConsoleWriteError($errMsg & @LF)
+	TrayTip($sTitle, $errMsg, 10, $TIP_ICONHAND)
+	Sleep(10000)
 	Exit (1)
 EndIf
 If $daemon Then
@@ -165,7 +175,6 @@ Else
 	$periodically = ""
 EndIf
 $defaultTip = "Set to " & $periodically & "update host record(s) for " & $host & ".dynv6.net"
-AutoItWinSetTitle($sTitle)
 TraySetToolTip($sTitle & " - " & $defaultTip)
 TrayTip($sTitle, $defaultTip, 10, $TIP_ICONNONE)
 ; Set $repeat = True so update will run at least once
