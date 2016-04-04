@@ -54,6 +54,9 @@ without leaving a Command Prompt open.
 Dynephant is licensed using the (extremely permissive) MIT license.
 See the LICENSE.txt file.
 
+The included icon is courtesy of http://www.how-to-draw-funny-cartoons.com
+(link back required by author if used)
+
 ##Usage
 
 First, you need an account with dynv6.com, with at least one host.
