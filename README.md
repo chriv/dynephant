@@ -105,3 +105,5 @@ user to effectively hide the Command Prompt window:
 ```bat
 psexec /accepteula -s -d c:\dynephant\update_foobar.dynv6.net.bat
 ```
+Example Windows Shortcuts for launching the GUI version with command
+line parameters are included in the installation directory.
