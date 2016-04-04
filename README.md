@@ -97,7 +97,7 @@ C:\dynephant\dynephant-cli -6 -daemon=600 -host=foobar -token=randomtextforfooba
 ```
 Only use a CLI version if you need monitoring or logging, as it stays
 running in a Command Prompt window. It is possible to run the cli
-version in a hidden window using a third-part utility to launch it.
+version in a hidden window using a third-party utility to launch it.
 Here's a one-line example using Sysinternal's psexec utility to run
 the batch file update_foobar.dynv6.net.bat as the Windows System
 user to effectively hide the Command Prompt window:
