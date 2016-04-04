@@ -5,14 +5,16 @@
 #AutoIt3Wrapper_Res_Language=1033
 #AutoIt3Wrapper_Run_Tidy=y
 #EndRegion ;**** Directives created by AutoIt3Wrapper_GUI ****
+; All version numbers will be overwritten by build_all.bat every time it is called!
+; Set version in build_all.bat before building!
 ; The following compile directives work better (only) with pragma compile
 #pragma compile(Comments, In-development Dynamic DNS Updater for Windows currently supporting dynv6.com service. Icon courtesy of http://www.how-to-draw-funny-cartoons.com)
 #pragma compile(CompanyName, Chuck Renner)
 #pragma compile(FileDescription, Dynephant Dynamic DNS Updater)
-#pragma compile(FileVersion, 0.9.1.10)
+#pragma compile(FileVersion, 0.9.1.13)
 #pragma compile(LegalCopyright, Copyright © 2016 Chuck Renner)
 #pragma compile(ProductName, Dynephant)
-#pragma compile(ProductVersion, 0.9.1.10)
+#pragma compile(ProductVersion, 0.9.1.13)
 
 ; Change to y when debugging in SciTE
 #AutoIt3Wrapper_Run_Debug_Mode=n
@@ -51,7 +53,7 @@
 	SOFTWARE.
 #CE
 
-; Below is a (potentially dangerous) carefully constructed batch file that will
+; Below is a carefully constructed batch file that will
 ;    build all versions (x86 and x64, cli and gui) of the exe for this script
 ;    it copies this script and modifies the copy to try to prevent an infinite build loop.
 ;    It MUST have GnuWin32's sed utility to work!
@@ -59,16 +61,12 @@
 ;    sign and get signed timestamps for the created EXEs.
 ;    The locations of sed and signtool (and other files used) are set in the
 ;    "_build_all.bat" file
-;    Note that a single mistake in the line that calls GnuWin32's sed utility may
-;    result in a dangerous infinitely and exponentially spawning build loop.
 ;    Building using the F7 key from SciTE will initially build just one version
 ;    (which will be overwritten), then call the batch file to build all versions.
-;    This is inefficient (and potentially dangerous), but it works for me! ;-)
-;    To be safe, I recommend commenting out this line (put a semi-colon ";" in front of it)
 #AutoIt3Wrapper_Run_After=build_all.bat
 
 $sTitle = "Dynephant"
-$sVersion = "0.9.1.10"
+$sVersion = "0.9.1.13"
 $sCopyright = "Copyright © 2016 Chuck Renner"
 $sMisc = "Icon courtesy of http://www.how-to-draw-funny-cartoons.com"
 ConsoleWriteError($sTitle & " Version " & $sVersion & @LF)

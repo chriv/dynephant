@@ -74,12 +74,14 @@ Section "Dynephant 64-bit (GUI and CLI)"
   SetOutPath $INSTDIR
   File dynephant.exe
   File dynephant-cli.exe
+  CreateShortCut "Update foobar.dynv6.net (64-bit).lnk" "$INSTDIR\dynephant.exe" "-6 -daemon=600 -host=foobar -token=randomtextforfoobarhere" "$INSTDIR\dynephant.exe" 0
 SectionEnd
 Section "Dynephant 32-bit (GUI and CLI)"
   SectionIn 1 2
   SetOutPath $INSTDIR
   File dynephant-x86.exe
   File dynephant-x86-cli.exe
+  CreateShortCut "Update foobar.dynv6.net (32-bit).lnk" "$INSTDIR\dynephant-x86.exe" "-6 -daemon=600 -host=foobar -token=randomtextforfoobarhere" "$INSTDIR\dynephant-x86.exe" 0
 SectionEnd
 Section "Dynephant Source"
   SectionIn 1
@@ -118,8 +120,10 @@ Section "Uninstall"
   Delete $INSTDIR\README.md
   Delete $INSTDIR\update_foobar.dynv6.net.bat
   Delete $INSTDIR\Martin-Berube-Square-Animal-Elephant.ico
+  Delete $INSTDIR\uninstall.exe
 
   ; Remove shortcuts, if any
+  Delete "$INSTDIR\*.lnk"
   ; NOT using to keep EXE portable and installer working
   ; with just user privileges (without admin or power user)
   ;Delete "$SMPROGRAMS\Dynephant\*.*"

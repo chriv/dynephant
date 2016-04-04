@@ -1,6 +1,5 @@
 REM Set locations of Dynephant directory, AutoIt3 binary, AutoIt3Wrapper script,
 REM the Windows 10 SDK signtool binary, and GnuWin32's sed utility binary below
-SET VERSION=0.9.1.10
 SET DYNDIR=C:\dynephant
 SET AI3="C:\Program Files (x86)\AutoIt3\AutoIt3.exe"
 SET AI3W="C:\Program Files (x86)\AutoIt3\SciTE\AutoIt3Wrapper\AutoIt3Wrapper.au3"
@@ -25,6 +24,8 @@ IF EXIST %NEWINFILE% DEL %NEWINFILE%
 IF NOT EXIST %AI3% GOTO NOAI3
 IF NOT EXIST %AI3W% GOTO NOAI3W
 IF NOT EXIST %SED% GOTO NOSED
+@REM Use sed to update all version information in source file
+%SED% -e "s/[0-9]\{1,\}\.[0-9]\{1,\}\.[0-9]\{1,\}\.[0-9]\{1,\}/%VERSION%/" -i %INFILE%
 @REM Dump script to temp file, commenting out any post build processing specified in the original script file
 @REM This is to prevent a possible infinitely spawning build loop
 %SED% -e "s/^\(#AutoIt3Wrapper_Run_After=\)/;\1/i" %INFILE% > %NEWINFILE%
@@ -73,7 +74,7 @@ GOTO END
 :END
 @REM Delete temp file and clean up build environment
 IF EXIST %NEWINFILE% DEL %NEWINFILE%
-@SET VERSION=
+DEL sed??????
 @SET DYNDIR=
 @SET AI3=
 @SET AI3W=
