@@ -11,10 +11,10 @@
 #pragma compile(Comments, In-development Dynamic DNS Updater for Windows currently supporting dynv6.com service. Icon courtesy of http://www.how-to-draw-funny-cartoons.com)
 #pragma compile(CompanyName, Chuck Renner)
 #pragma compile(FileDescription, Dynephant Dynamic DNS Updater)
-#pragma compile(FileVersion, 0.9.1.13)
+#pragma compile(FileVersion, 0.9.1.14)
 #pragma compile(LegalCopyright, Copyright © 2016 Chuck Renner)
 #pragma compile(ProductName, Dynephant)
-#pragma compile(ProductVersion, 0.9.1.13)
+#pragma compile(ProductVersion, 0.9.1.14)
 
 ; Change to y when debugging in SciTE
 #AutoIt3Wrapper_Run_Debug_Mode=n
@@ -66,7 +66,7 @@
 #AutoIt3Wrapper_Run_After=build_all.bat
 
 $sTitle = "Dynephant"
-$sVersion = "0.9.1.13"
+$sVersion = "0.9.1.14"
 $sCopyright = "Copyright © 2016 Chuck Renner"
 $sMisc = "Icon courtesy of http://www.how-to-draw-funny-cartoons.com"
 ConsoleWriteError($sTitle & " Version " & $sVersion & @LF)
