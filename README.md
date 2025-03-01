@@ -1,5 +1,8 @@
 #Dynephant
 
+This project is dependant on Internet Explorer, and was abandoned
+years ago. It has been moved to archvie status.
+
 Dynephant is a simple, open-source Dynamic DNS (DDNS) client for
 Windows. It is intended to have as few dependencies as possible. It
 was written, because, at the time of it's creation, very few DDNS
